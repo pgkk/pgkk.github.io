@@ -4,7 +4,8 @@
 		<meta http-equiv="pragma" content="no-cache"/>
 		<meta http-equiv="cache-control" content="no-cache"/>
 		<meta http-equiv="expires" content="0"/>
-		<title>²âÊÔ</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>æµ‹è¯•</title>
 		<link rel="stylesheet" type="text/css" href="../kkbuttongroup.css" />
 		<script type="text/javascript" src="../kkbuttongroup.js"></script>
 	</head>
@@ -12,12 +13,12 @@
 		<div id="kkbuttongroup_box"></div>
 		
 		<script type="text/javascript">
-			//ÍøÂçÀàĞÍ°´Å¥
+			//ç½‘ç»œç±»å‹æŒ‰é’®
 			var netTypeButtonObj = new KKButtonGroup({
 				boxid	: 'kkbuttongroup_box',
 				id		: 'nettype_radiogroup',
 				btns	: [{
-						text	: 'ËùÓĞ',
+						text	: 'æ‰€æœ‰',
 						value	: '0'
 					},{
 						text	: '2G',
@@ -29,27 +30,27 @@
 				],
 				value		: '0',
 				onchange	: function(val,text,btn,index,isFirst,isLast){
-					document.getElementById('change_event_div').innerHTML = 'µ±Ç°Öµ£º' + netTypeButtonObj.value;
+					document.getElementById('change_event_div').innerHTML = 'å½“å‰å€¼ï¼š' + netTypeButtonObj.value;
 				}
 			});
 			
-			//»ñÈ¡Öµ·½·¨1£º
+			//è·å–å€¼æ–¹æ³•1ï¼š
 			//var val = netTypeButtonObj.getValue();
-			//»ñÈ¡Öµ·½·¨2£º
+			//è·å–å€¼æ–¹æ³•2ï¼š
 			//val = netTypeButtonObj.value;
 			function getButtonValue(){
 					var val = netTypeButtonObj.value;
 					var text = netTypeButtonObj.text;
-					document.getElementById('showValueDiv').innerHTML = 'Ñ¡ÖĞ°´Å¥ÎÄ±¾£º' + text + "<br/>" 
-						+ 'Ñ¡ÖĞ°´Å¥Öµ£º' + val ;
+					document.getElementById('showValueDiv').innerHTML = 'é€‰ä¸­æŒ‰é’®æ–‡æœ¬ï¼š' + text + "<br/>" 
+						+ 'é€‰ä¸­æŒ‰é’®å€¼ï¼š' + val ;
 			}
 			
 		</script>
 		<br/>
 		<br/>
-		<div id="change_event_div" style="background-color:#FF0">µ±Ç°Öµ£º0</div>
+		<div id="change_event_div" style="background-color:#FF0">å½“å‰å€¼ï¼š0</div>
 		<br/><br/>
-		<button onclick="getButtonValue()">»ñÈ¡Öµ</button>
+		<button onclick="getButtonValue()">è·å–å€¼</button>
 		<div id="showValueDiv"></div>
 		
 	</body>
