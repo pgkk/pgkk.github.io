@@ -1,0 +1,49 @@
+.kkbuttongroup {
+	border:0px;
+	border-collapse:collapse;
+	height:24px;
+	padding:0px;
+	overflow:hidden;
+	border-spacing:0px;
+}
+.kkbuttongroup td{
+	padding-left:5px;
+	padding-right:5px;
+	padding-top:0px;
+	padding-bottom:0px;
+	font-size:12px;
+	height:24px;
+	border:0px;
+	font-family:'Î¢ÈíÑÅºÚ','ËÎÌå';
+	border-left:1px solid #ccc;
+	cursor:pointer;
+	background:#fff url(images/normal_mid_bg.jpg) repeat-x left top;
+}
+.kkbuttongroup td.left_corner{
+	padding:0px;
+	width:6px;
+	border:0px;
+	background:#fff url(images/normal_left_bg.jpg) no-repeat left top;
+}
+.kkbuttongroup td.left_corner_checked{
+	padding:0px;
+	width:6px;
+	border:0px;
+	background:#fff url(images/checked_left_bg.jpg) no-repeat left top;
+}
+.kkbuttongroup td.right_corner{
+	padding:0px;
+	width:6px;
+	border:0px;
+	background:#fff url(images/normal_right_bg.jpg) no-repeat right top;
+}
+.kkbuttongroup td.right_corner_checked{
+	padding:0px;
+	width:6px;
+	border:0px;
+	background:#fff url(images/checked_right_bg.jpg) no-repeat right top;
+}
+.kkbuttongroup td.checked{
+	color:#fff;
+	background:#fff url(images/checked_mid_bg.jpg) repeat-x left top;
+}

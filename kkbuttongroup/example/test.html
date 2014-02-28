@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="pragma" content="no-cache"/>
+		<meta http-equiv="cache-control" content="no-cache"/>
+		<meta http-equiv="expires" content="0"/>
+		<title>测试</title>
+		<link rel="stylesheet" type="text/css" href="../kkbuttongroup.css" />
+		<script type="text/javascript" src="../kkbuttongroup.js"></script>
+	</head>
+	<body>
+		<div id="kkbuttongroup_box"></div>
+		
+		<script type="text/javascript">
+			//网络类型按钮
+			var netTypeButtonObj = new KKButtonGroup({
+				boxid	: 'kkbuttongroup_box',
+				id		: 'nettype_radiogroup',
+				btns	: [{
+						text	: '所有',
+						value	: '0'
+					},{
+						text	: '2G',
+						value	: '1'
+					},{
+						text	: '3G',
+						value	: '2'
+					}
+				],
+				value		: '0',
+				onchange	: function(val,text,btn,index,isFirst,isLast){
+					document.getElementById('change_event_div').innerHTML = '当前值：' + netTypeButtonObj.value;
+				}
+			});
+			
+			//获取值方法1：
+			//var val = netTypeButtonObj.getValue();
+			//获取值方法2：
+			//val = netTypeButtonObj.value;
+			function getButtonValue(){
+					var val = netTypeButtonObj.value;
+					var text = netTypeButtonObj.text;
+					document.getElementById('showValueDiv').innerHTML = '选中按钮文本：' + text + "<br/>" 
+						+ '选中按钮值：' + val ;
+			}
+			
+		</script>
+		<br/>
+		<br/>
+		<div id="change_event_div" style="background-color:#FF0">当前值：0</div>
+		<br/><br/>
+		<button onclick="getButtonValue()">获取值</button>
+		<div id="showValueDiv"></div>
+		
+	</body>
+</html>
