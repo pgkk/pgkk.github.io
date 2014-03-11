@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JS网页特效-纯javascript手拉风琴效果</title>
+<style type="text/css">
+* {padding: 0; margin: 0; }
+li {ist-style: none; }
+body {background: #f6f9fc; }
+a {color:#fff;}
+#demo {width: 615px; height: 254px; border: 1px solid #ccc; margin: 0px auto 0; overflow:hidden; }
+.indemo { width: 3300px; height: 254px; }
+.indemo li{width:22px;height:254px;float:left;position:relative;overflow:hidden;}
+.indemo li.active { width: 550px; }
+.indemo span { width: 21px; height: 244px; padding-top: 10px; border-right: 1px solid #fff; position: absolute; top: 0; right: 0; color: #fff; font-size: 12px; text-align: center; cursor: pointer; }
+.indemo img { width: 550px; height: 254px; }
+.bg0 { background: #00FFCC; }
+.bg1 { background: #636363; }
+.bg2 { background: #3d7fbb; }
+.bg3 { background: #5ca716; }
+.bg4 { background: #f28b24; }
+.bg5 { background: #7c0070; }
+</style>
+<style type="text/css">
+/*btn css3*/
+.button {display: inline-block;zoom: 1; *display: inline;vertical-align: baseline;margin: 0 2px;outline: none;cursor: pointer;text-align: center;text-decoration: none;font: 14px/100% Arial, Helvetica, sans-serif;padding:0.25em 0.6em 0.3em;text-shadow: 0 1px 1px rgba(0,0,0,.3);-webkit-border-radius: .5em; -moz-border-radius: .5em;border-radius: .5em;-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.red {color: #faddde;border: solid 1px #980c10;background: #d81b21;background: -webkit-gradient(linear, left top, left bottom, from(#ed1c24), to(#A51715));background: -moz-linear-gradient(top,  #ed1c24,  #A51715);filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
+}
+.red:hover { background: #b61318; background: -webkit-gradient(linear, left top, left bottom, from(#c9151b), to(#a11115)); background: -moz-linear-gradient(top,  #c9151b,  #a11115); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#c9151b', endColorstr='#a11115'); color:#fff; text-decoration:none}
+.red:active {color: #de898c;background: -webkit-gradient(linear, left top, left bottom, from(#aa1317), to(#ed1c24));background: -moz-linear-gradient(top,  #aa1317,  #ed1c24);filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#aa1317', endColorstr='#ed1c24');
+}
+/*End css3*/
+</style>
+</head>
+<body style="background:url(images/bodyBg.jpg) repeat #333;">
+<h1 style="height:100px; line-height:100px; font-size:30px; font-family:'微软雅黑'; color:#FFF; text-align:center; background:url(images/bodyBg3.jpg) repeat-x bottom left; font-weight:normal">纯javascript手拉风琴效果</h1>
+<div style="background:#FFF; padding:50px;">
+<!--效果开始-->
+<div id="demo">
+  <ul class="indemo">
+    <li class="active"> <span class="bg0">第一幅图片展示</span> <img src="images/0702_01.jpg" /> </li>
+    <li> <span class="bg1">第二幅图片展示</span> <img src="images/0702_02.jpg" /> </li>
+    <li> <span class="bg2">第三幅图片展示</span> <img src="images/0702_03.jpg" /> </li>
+    <li> <span class="bg3">第四幅图片展示</span> <img src="images/0702_04.jpg" /> </li>    
+  </ul>
+</div>
+<script type="text/javascript">
+ window.onload=function ()
+{
+	createAccordion('demo');
+};
+
+function createAccordion(id)
+{
+	var oDiv=document.getElementById(id);
+	var iMinWidth=9999999;
+	
+	var aLi=oDiv.getElementsByTagName('li');
+	var aSpan=oDiv.getElementsByTagName('span');
+	
+	var i=0;
+	
+	oDiv.timer=null;
+	
+	for(i=0;i<aSpan.length;i++)
+	{
+		aSpan[i].index=i;
+		aSpan[i].onclick=function ()
+		{
+			gotoImg(oDiv, this.index, iMinWidth);
+		};
+		
+		iMinWidth=Math.min(iMinWidth, aLi[i].offsetWidth);
+	}
+};
+
+function gotoImg(oDiv, iIndex, iMinWidth)
+{
+	if(oDiv.timer)
+	{
+		clearInterval(oDiv.timer);
+	}
+	oDiv.timer=setInterval
+	(
+		function ()
+		{
+			changeWidthInner(oDiv, iIndex, iMinWidth);
+		}, 30
+	);
+}
+
+function changeWidthInner(oDiv, iIndex, iMinWidth)
+{
+	var aLi=oDiv.getElementsByTagName('li');
+	var aSpan=oDiv.getElementsByTagName('span');
+	var iWidth=oDiv.offsetWidth;
+	var w=0;
+	var bEnd=true;
+	var i=0;
+	
+	for(i=0;i<aLi.length;i++)
+	{
+		if(i==iIndex)
+		{
+			continue;
+		}
+		
+		if(iMinWidth==aLi[i].offsetWidth)
+		{
+			iWidth-=iMinWidth;
+			continue;
+		}
+		
+		bEnd=false;
+		
+		speed=Math.ceil((aLi[i].offsetWidth-iMinWidth)/10);
+		
+		w=aLi[i].offsetWidth-speed;
+		
+		if(w<=iMinWidth)
+		{
+			w=iMinWidth;
+		}
+		
+		aLi[i].style.width=w+'px';
+		
+		iWidth-=w;
+	}
+	
+	aLi[iIndex].style.width=iWidth+'px';
+	
+	if(bEnd)
+	{
+		clearInterval(oDiv.timer);
+		oDiv.timer=null;
+	}
+}
+</script>
+<!--End-->
+</div>
+<br/>
+<p>
+	<a target="_blank" href="http://github.com/pgkk">http://github.com/pgkk</>
+</p>
+</body>
+</html>
