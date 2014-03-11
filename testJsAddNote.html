@@ -1,0 +1,25 @@
+<html>
+<head></head>
+<body>
+<script type="text/javascript">
+var count = 0;
+function addNode(){
+	var slt = document.getElementById('slt');
+	var username = document.createElement("input");
+	username.type="text";
+	username.name="username";
+	username.id="username";
+	username.value=""+count;
+	slt.parentNode.insertBefore(username,slt.nextSibling);
+	count++;
+}
+</script>
+<div>
+<select id="slt">
+	<option value='0'>选择</option>
+</select>
+<div id="div111" style="border:1px solid #ccc;">插入到前面</div>
+<div>
+<button onclick="addNode()">插入</button>
+</body>
+
