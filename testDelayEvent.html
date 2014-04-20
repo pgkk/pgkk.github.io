@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>测试事件延时代码</title>
+<script type="text/javascript">
+//可进一步扩展为支持可传参的fn
+         var onFooEndFunc = function(fn) {
+             var delay = 50; // 根据实际情况可调整延时时间
+             var executionTimer;
+             return function() {
+                 if (!!executionTimer) {
+                     clearTimeout(executionTimer);
+                 }
+                 //这里延时执行你的函数
+                 executionTimer = setTimeout(function() {
+                     //alert('123');
+                     fn();
+                 }, delay);
+             };
+         };
+
+
+var count = 0;
+         var myfn = function() {
+             document.getElementById("TextArea1").value = "Executed " + (++count) + " times.";
+         }
+         var normalevent = function() {
+             count = 0;
+             document.getElementById("TextArea1").value = "Executed 0 times.";
+             document.onmousemove = myfn;
+         };
+         var endevent = function() {
+             count = 0;
+             document.getElementById("TextArea1").value = "Executed 0 times.";
+             document.onmousemove = onFooEndFunc(myfn);
+         };
+</script>
+</head>
+<body>
+<input id="normal" value="恢复正常" onclick="normalevent()" type="button" />&nbsp;
+<input id="end" value="使用延时" onclick="endevent();" type="button" />&nbsp;
+
+<textarea id="TextArea1" style="height: 40px; width: 200px; color: #ff0000; clip: rect(auto, auto, auto, auto);"></textarea>
+</body>
+</html>
